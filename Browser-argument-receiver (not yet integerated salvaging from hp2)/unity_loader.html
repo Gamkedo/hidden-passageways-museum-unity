@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | HPLabsUnityScenes</title>
+    <link rel="shortcut icon" href="webgl-builds/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="webgl-builds/TemplateData/style.css">
+    <script src="webgl-builds/TemplateData/UnityProgress.js"></script>
+    <script src="webgl-builds/Build/UnityLoader.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC" rel="stylesheet">
+<style>
+  html {
+    background-image: url('future.png');
+  }
+  #phrase {
+    font-family: 'Alegreya Sans SC', sans-serif;
+  }
+</style>
+<script>
+
+function getUrlVars() { // borrowed from https://html-online.com/articles/get-url-parameters-javascript/
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+function replaceAll(inStr, replThis, replWith) {
+	var wasStr;
+	do {
+		wasStr = inStr;
+		inStr = inStr.replace(replThis, replWith);
+	} while(wasStr != inStr);
+	return inStr;
+}
+
+var args = getUrlVars();
+buildName = "common";
+sceneName = args["file"];
+sceneName = replaceAll(sceneName,"_", " ");
+if (typeof(args["param"]) !== 'undefined') {
+  paramVal = parseInt(args["param"]);
+} else {
+  paramVal = 0;
+}
+
+window.onload = function() {
+	phrasePart = document.getElementById("phrase");
+	phraseArg = args["phrase"];
+	phraseArg = replaceAll(phraseArg,"_", " ");
+	phrasePart.innerHTML = phraseArg;
+}
+</script>
+
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "webgl-builds/Build/"+buildName+".json", {onProgress: UnityProgress});
+
+      function OnScenesReady(){
+          console.log("success! application is loaded")
+          unityInstance.SendMessage("MasterSwitcher","SetParam",paramVal);
+          unityInstance.SendMessage("MasterSwitcher","SceneLoad",sceneName);
+      }
+    </script>
+  </head>
+  <body>
+    <center>👉 <a href="index.html" target="_parent" id="phrase"></a> 👈</center>
+    <div class="webgl-content">
+      <div id="unityContainer" style="width: 960px; height: 600px"></div>
+      <div class="footer">
+        <!-- <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div> -->
+      </div>
+    </div>
+  </body>
+</html>
