@@ -1,0 +1,209 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+
+public class WalkControl : MonoBehaviour {
+	[HideInInspector]
+    public Rigidbody rb;
+	private bool onGround=true;
+    private Vector3 prevValidPosition;
+    public bool areFeetLocked = false;
+    public float jumpForce = 5.0f;
+    public float walkSpeed = 6.0f;
+    public float strafeSpeed = 4.0f;
+    public float speedFalloffAmt = 0.9f; // friction only for lateral motion
+
+    public float suchLowYMustHaveFallenThroughFloor = -150.0f;
+    Vector3 lastKnownSafelyOnGround = Vector3.zero;
+
+	private Vector3 forward, right;
+
+    //private float powerUp = 1.0f;
+
+    public static WalkControl instance;
+
+	// Use this for initialization
+	void Start () {
+        lastKnownSafelyOnGround = transform.position;
+        instance = this;
+        rb = GetComponent<Rigidbody>();
+		Cursor.lockState = CursorLockMode.Locked;
+
+        if(SceneWarp.fromScene != null && SceneWarp.fromScene.Length > 0) {
+            // Debug.Log("FROM SCENE: " + SceneWarp.fromScene);
+            GameObject[] warpGOs = GameObject.FindGameObjectsWithTag("Teleporter");
+            for (int i = 0; i < warpGOs.Length;i++) {
+                SceneWarp swScript = warpGOs[i].GetComponent<SceneWarp>();
+                if(swScript.sceneName == SceneWarp.fromScene) {
+                    transform.position = swScript.returnLocation.position;
+                    Vector3 focusFixedAtEyeHeight = swScript.transform.position;
+                    focusFixedAtEyeHeight.y = transform.position.y;
+                    transform.LookAt(focusFixedAtEyeHeight);
+                    break;
+                }
+            }
+        }
+	}
+
+	void FixedUpdate()
+	{
+        if (ArcadePlayer.playingNow != null)
+        {
+            return;
+        }
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        if (ViewControl.instance.paperView.enabled)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return; // reading, stand still
+        }
+        if (areFeetLocked)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+
+        if (Cursor.lockState == CursorLockMode.Locked)
+        {
+            if (areFeetLocked == false)
+            {
+				if (onGround)
+				{
+					forward = transform.forward;
+					right = transform.right;
+				}
+                Vector3 lateralDecay = rb.linearVelocity;
+                lateralDecay.x *= speedFalloffAmt;
+                lateralDecay.z *= speedFalloffAmt;
+                rb.linearVelocity = lateralDecay;
+                float scaleForCompatibilityWithOlderTuning = 4.0f; // added to keep pre-physics walk tuning numbers
+                rb.linearVelocity += forward * Time.deltaTime * walkSpeed * scaleForCompatibilityWithOlderTuning *
+                    Input.GetAxisRaw("Vertical");
+                rb.linearVelocity += right * Time.deltaTime * strafeSpeed * scaleForCompatibilityWithOlderTuning *
+                    Input.GetAxisRaw("Horizontal");
+            }
+
+            transform.Rotate(Vector3.up, Time.deltaTime * 65.0f * Input.GetAxis("Mouse X"));
+
+        }
+        else if (Input.GetButtonDown("Fire1"))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+	}
+
+	// Update is called once per frame
+	void Update () {
+        if (ArcadePlayer.playingNow != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            return;
+        }
+        RaycastHit rhInfo;
+
+        prevValidPosition = transform.position;
+
+        if (onGround && Input.GetButtonDown("Jump"))
+        {
+            // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpUp", gameObject);
+            onGround = false;
+            rb.linearVelocity += Vector3.up * jumpForce;
+        }
+
+        /*if(Input.GetKeyDown(KeyCode.Q)) {
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene( SceneManager.GetActiveScene().name );
+            return;
+        }*/
+
+        /*if (Input.GetKeyUp(KeyCode.Escape)) { // now handled by exit widget
+			if(Cursor.lockState == CursorLockMode.Locked) {
+				Cursor.lockState = CursorLockMode.None;
+			} else {
+				Cursor.lockState = CursorLockMode.Locked;
+			}
+		}*/
+
+        if (ViewControl.instance.paperView.enabled)
+        {
+            return; // reading, stand still
+        }
+        /*
+        if (Physics.Raycast(transform.position, Vector3.down, out rhInfo, 3.0f))
+        {
+			if (rhInfo.collider != null)
+			{
+				if (rhInfo.collider.gameObject.layer == LayerMask.NameToLayer("Water"))
+				{
+					transform.position = prevValidPosition; // undoing position if over water
+				}
+			}
+        }*/
+
+        int layerMask = ~LayerMask.GetMask("Ignore Raycast");
+        if (Physics.Raycast(transform.position, Vector3.down, out rhInfo, 1.2f, layerMask))
+        {
+			if (rhInfo.collider != null)
+			{
+                if (onGround == false && rb.linearVelocity.y < 0.0f)
+                {
+                    // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpLand", gameObject);
+                }
+
+                // Debug.Log("standing on " + rhInfo.collider.name);
+				lastKnownSafelyOnGround = transform.position;
+				forward = Vector3.Cross(transform.right, rhInfo.normal).normalized;
+				right = Vector3.Cross(-transform.forward, rhInfo.normal).normalized;
+                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < 0.1f && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < 01f &&
+                    Input.GetButton("Jump") == false)
+				{
+					//Magic number (1.041f) comes from the following line:
+					//Debug.Log(Vector3.Distance(transform.position, rhInfo.point));
+					transform.position = new Vector3(rhInfo.point.x, rhInfo.point.y + 1.045f, rhInfo.point.z);
+					rb.linearVelocity = Vector3.zero;
+				}
+                onGround = true;
+			}
+        }
+        else
+        {
+            onGround = false;
+            if (transform.position.y < suchLowYMustHaveFallenThroughFloor)
+            {
+                Debug.Log("Fell through or off world edge, resetting to last ground touch");
+                Debug.Log("If this shouldn't have happened or fell too far, set lastKnownSafelyOnGround");
+                transform.position = lastKnownSafelyOnGround;
+            }
+        }
+    }
+    ///This is powerup code for Aether. Just increases jump height
+    ///No idea why this isn't working right, the debug fires, but the jump force refuses to change.
+    //void OnTriggerEnter(Collider col) //PowerupCode for the Aether - ties into Powerup tag. Just increases jump height.
+    //{
+    //    if (col.gameObject.tag == "Powerup")
+    //        jumpForce += powerUp;
+    //        Debug.Log("Player picked up powerup adding +" + powerUp + " to a total of " + jumpForce);
+    //}
+
+    /*
+    void OnCollisionStay(Collision facts) {
+		onGround = true; // currently not distinguishing ground from wall/ceiling/etc.
+	}*/
+
+	void OnTriggerStay(Collider other) {
+		if(other.gameObject.layer == LayerMask.NameToLayer("Water")) {
+			if(rb.linearVelocity.y < 0.0f) {
+                Vector3 fixedY = rb.linearVelocity;
+                fixedY.y = 0.0f;
+                rb.linearVelocity = fixedY;
+			}
+			rb.AddForce(Vector3.up * Time.deltaTime * 1000.0f);
+		}
+	}
+}
