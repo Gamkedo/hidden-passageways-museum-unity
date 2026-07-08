@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 public class WalkControl : MonoBehaviour {
+    public InputSystem_Actions inputSystem;
+    private Vector2 moveInput;
+    private Vector2 turnInput;
+
 	[HideInInspector]
     public Rigidbody rb;
 	private bool onGround=true;
@@ -25,7 +29,11 @@ public class WalkControl : MonoBehaviour {
     public static WalkControl instance;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
+        inputSystem = new InputSystem_Actions();
+        inputSystem.Enable();
+    }
+    void Start() {
         lastKnownSafelyOnGround = transform.position;
         instance = this;
         rb = GetComponent<Rigidbody>();
@@ -84,12 +92,12 @@ public class WalkControl : MonoBehaviour {
                 rb.linearVelocity = lateralDecay;
                 float scaleForCompatibilityWithOlderTuning = 4.0f; // added to keep pre-physics walk tuning numbers
                 rb.linearVelocity += forward * Time.deltaTime * walkSpeed * scaleForCompatibilityWithOlderTuning *
-                    Input.GetAxisRaw("Vertical");
+                    moveInput.y;
                 rb.linearVelocity += right * Time.deltaTime * strafeSpeed * scaleForCompatibilityWithOlderTuning *
-                    Input.GetAxisRaw("Horizontal");
+                    moveInput.x;
             }
 
-            transform.Rotate(Vector3.up, Time.deltaTime * 65.0f * Input.GetAxis("Mouse X"));
+            transform.Rotate(Vector3.up, Time.deltaTime * 65.0f * turnInput.x);
 
         }
         else if (Input.GetButtonDown("Fire1"))
@@ -100,6 +108,10 @@ public class WalkControl : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+        moveInput = inputSystem.Player.Move.ReadValue<Vector2>();
+        turnInput = inputSystem.Player.Look.ReadValue<Vector2>();
+        bool jumpKey = inputSystem.Player.Jump.WasPressedThisFrame();
+
         if (ArcadePlayer.playingNow != null)
         {
             rb.linearVelocity = Vector3.zero;
@@ -109,7 +121,7 @@ public class WalkControl : MonoBehaviour {
 
         prevValidPosition = transform.position;
 
-        if (onGround && Input.GetButtonDown("Jump"))
+        if (onGround && jumpKey)
         {
             // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpUp", gameObject);
             onGround = false;
@@ -160,8 +172,8 @@ public class WalkControl : MonoBehaviour {
 				lastKnownSafelyOnGround = transform.position;
 				forward = Vector3.Cross(transform.right, rhInfo.normal).normalized;
 				right = Vector3.Cross(-transform.forward, rhInfo.normal).normalized;
-                if (Mathf.Abs(Input.GetAxisRaw("Vertical")) < 0.1f && Mathf.Abs(Input.GetAxisRaw("Horizontal")) < 01f &&
-                    Input.GetButton("Jump") == false)
+                if (Mathf.Abs(moveInput.y) < 0.1f && Mathf.Abs(moveInput.x) < 01f &&
+                    jumpKey == false)
 				{
 					//Magic number (1.041f) comes from the following line:
 					//Debug.Log(Vector3.Distance(transform.position, rhInfo.point));

@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ViewControl : MonoBehaviour {
-	public Text linkClue;
-    public Text linkClueShadow;
+    private InputSystem_Actions inputSystem;
+    private Vector2 turnInput;
+
+	public TMP_Text linkClue;
+    public TMP_Text linkClueShadow;
     public Image paperView;
     [SerializeField]
     private float lookAngLimit = 45.0f;
@@ -21,10 +25,15 @@ public class ViewControl : MonoBehaviour {
     // Use this for initialization
     void Start () {
         instance = this;
+        inputSystem = GetComponentInParent<WalkControl>().inputSystem;
     }
 
 	// Update is called once per frame
 	void Update () {
+        bool jumpKey = inputSystem.Player.Jump.WasPressedThisFrame();
+        bool actionKey = inputSystem.Player.Interact.WasPressedThisFrame();
+        bool tabKey = inputSystem.Player.TabOut.WasPressedThisFrame();
+        turnInput = inputSystem.Player.Look.ReadValue<Vector2>();
         if (ArcadePlayer.playingNow != null)
         {
             return;
@@ -36,11 +45,16 @@ public class ViewControl : MonoBehaviour {
 
         if (paperView.enabled)
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (tabKey)
             {
                 paperView.enabled = false;
                 WalkControl.instance.areFeetLocked = false;
-            } else if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump"))
+            } else if(readScript == null)
+            {
+                paperView.enabled = false;
+                Debug.Log("(old page flipping script leftover, not updated)");
+            }
+            else if(actionKey || jumpKey)
             {
                 pageViewed++;
                 // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/ScrapLook", gameObject);
@@ -74,7 +88,7 @@ public class ViewControl : MonoBehaviour {
         if (ignoreDuringInit == false)
         {
             float angleBefore = transform.rotation.eulerAngles.x;
-            float angleMoveBy = Time.deltaTime * -60.0f * Input.GetAxis("Mouse Y");
+            float angleMoveBy = Time.deltaTime * -60.0f * turnInput.y;
             float angleAfter = angleBefore + angleMoveBy;
             /*if (angleAfter < -lookAngLimit)
             {
@@ -99,7 +113,7 @@ public class ViewControl : MonoBehaviour {
             transform.Rotate(Vector3.right, angleMoveBy);
         }
 
-		if(linkClue.text != "") {
+		if(linkClue && linkClue.text != "") {
             linkClueShadow.text = linkClue.text = "";
 		}
 
@@ -117,7 +131,7 @@ public class ViewControl : MonoBehaviour {
             }*/
 
             if (mtol) {
-                if(Input.GetButtonDown("Fire1") || Input.GetButtonDown("Jump")) {
+                if(actionKey || jumpKey) {
                     readScript = mtol.GetComponent<ReadableScrap>();
                     if(readScript)
                     {
