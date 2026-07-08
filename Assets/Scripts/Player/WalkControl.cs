@@ -97,8 +97,6 @@ public class WalkControl : MonoBehaviour {
                     moveInput.x;
             }
 
-            transform.Rotate(Vector3.up, Time.deltaTime * 65.0f * turnInput.x);
-
         }
         else if (Input.GetButtonDown("Fire1"))
         {
@@ -127,6 +125,8 @@ public class WalkControl : MonoBehaviour {
             onGround = false;
             rb.linearVelocity += Vector3.up * jumpForce;
         }
+        
+        transform.Rotate(Vector3.up, 1.5f * turnInput.x); // reminder: don't Time.deltaTime on new mouse input, already per frame
 
         /*if(Input.GetKeyDown(KeyCode.Q)) {
             PlayerPrefs.DeleteAll();

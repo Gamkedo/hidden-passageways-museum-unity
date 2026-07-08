@@ -765,27 +765,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.99
+      value: -0.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.9
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.12
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d3915598ac1e7446fa3721798ad92b07, type: 3}
       propertyPath: m_LocalRotation.w
@@ -950,7 +950,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1474523350}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 848ce9dfff2964e3aa187b56a5630249, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

@@ -88,7 +88,7 @@ public class ViewControl : MonoBehaviour {
         if (ignoreDuringInit == false)
         {
             float angleBefore = transform.rotation.eulerAngles.x;
-            float angleMoveBy = Time.deltaTime * -60.0f * turnInput.y;
+            float angleMoveBy = -1.5f * turnInput.y; // reminder: don't Time.deltaTime on new mouse input, already per frame
             float angleAfter = angleBefore + angleMoveBy;
             /*if (angleAfter < -lookAngLimit)
             {
