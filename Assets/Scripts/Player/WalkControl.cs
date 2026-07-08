@@ -58,11 +58,11 @@ public class WalkControl : MonoBehaviour {
             return;
         }*/
 
-        if (ViewControl.instance.paperView.enabled)
+        /*if (ViewControl.instance.paperView.enabled)
         {
             rb.linearVelocity = Vector3.zero;
             return; // reading, stand still
-        }
+        }*/
         if (areFeetLocked)
         {
             rb.linearVelocity = Vector3.zero;
@@ -130,10 +130,10 @@ public class WalkControl : MonoBehaviour {
 			}
 		}*/
 
-        if (ViewControl.instance.paperView.enabled)
+        /*if (ViewControl.instance.paperView.enabled)
         {
             return; // reading, stand still
-        }
+        }*/
         /*
         if (Physics.Raycast(transform.position, Vector3.down, out rhInfo, 3.0f))
         {
