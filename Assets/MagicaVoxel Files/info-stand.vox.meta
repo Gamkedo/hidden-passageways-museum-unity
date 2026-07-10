@@ -7,7 +7,7 @@ ScriptedImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-  script: {fileID: 11500000, guid: ab5829fc25efa6b48a46fc7ef9225ba8, type: 3}
+  script: {fileID: 11500000, guid: 775e83507a2fd43d9a4d981efc50a847, type: 3}
   selectedRenderType: VoxBakedTextureRenderer
   overridePalette: 0
   customPalette: []
