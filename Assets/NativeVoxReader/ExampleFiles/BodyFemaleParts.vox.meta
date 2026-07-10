@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: e25aef7b6d55e4cb49ae8c338b942ce8
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: ab5829fc25efa6b48a46fc7ef9225ba8, type: 3}
+  selectedRenderType: VoxBakedTextureRenderer
+  settings:
+    rid: 9010086916211867784
+  references:
+    version: 2
+    RefIds:
+    - rid: 9010086916211867784
+      type: {class: VoxFileToUnityBakeTextureSetting, ns: Miventech.NativeVoxReader.Tools.VoxFileBakeTexture, asm: Miventech.NativeVoxReader}
+      data:
+        maxAtlasSize: 4096
+        maxQuadSize: 48
+        Scale: 0.1

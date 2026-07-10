@@ -1,12 +1,5 @@
 {
   "dependencies": {
-    "com.miventech.nativevoxreader": {
-      "version": "https://github.com/miventech/NativeUnityVoxReader.git",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "9176cb2574284f04be2c507a90fbe9ce19a2a7cc"
-    },
     "com.unity.ai.navigation": {
       "version": "2.0.13",
       "depth": 0,
