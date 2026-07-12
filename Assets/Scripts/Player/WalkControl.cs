@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using System;
 
 public class WalkControl : MonoBehaviour {
     public InputSystem_Actions inputSystem;
@@ -27,6 +28,7 @@ public class WalkControl : MonoBehaviour {
     //private float powerUp = 1.0f;
 
     public static WalkControl instance;
+    public event Action OnGrounded;
 
 	// Use this for initialization
 	void Awake () {
@@ -165,6 +167,7 @@ public class WalkControl : MonoBehaviour {
 			{
                 if (onGround == false && rb.linearVelocity.y < 0.0f)
                 {
+                    OnGrounded?.Invoke();
                     // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpLand", gameObject);
                 }
 

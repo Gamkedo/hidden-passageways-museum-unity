@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 8546726462060742779}
   - component: {fileID: 1441519021992802364}
   - component: {fileID: 3188559952632992641}
+  - component: {fileID: 8792830946894273152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -355,6 +356,20 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &8792830946894273152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172491360391598653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cd3e7a0c5a32241bd76746720e1a69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
+  walkControl: {fileID: 8546726462060742779}
+  landingSound: {fileID: 8300000, guid: 5499f3bd7bae402429d71f8e5e62eda0, type: 3}
 --- !u!1 &2794080349322281732
 GameObject:
   m_ObjectHideFlags: 0
