@@ -6,7 +6,7 @@ public class Orb : MonoBehaviour , IInteractable
 {
     [SerializeField] private GameObject highlightObject;
 
-    [SerializeField] private int sceneIndex;
+    [SerializeField] private string sceneName;
 
     private void Start()
     {
@@ -25,7 +25,7 @@ public class Orb : MonoBehaviour , IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene(sceneIndex);
+        SceneManager.LoadScene(sceneName);
     }
 
 

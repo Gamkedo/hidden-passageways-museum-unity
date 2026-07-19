@@ -619,6 +619,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
+      propertyPath: sceneName
+      value: Sci-Fi City Test 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: sceneIndex
       value: 1
       objectReference: {fileID: 0}
