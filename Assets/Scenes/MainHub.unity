@@ -566,7 +566,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1417998903
+--- !u!1001 &1428346625
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -576,19 +576,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2258337309165194380, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_Name
-      value: Orb
+      value: Portal Button
       objectReference: {fileID: 0}
     - target: {fileID: 5125781407322801204, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.25
+      value: -8.075237
       objectReference: {fileID: 0}
     - target: {fileID: 5125781407322801204, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.07
+      value: -2.7000005
       objectReference: {fileID: 0}
     - target: {fileID: 5125781407322801204, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 10.02
+      value: 9.771838
       objectReference: {fileID: 0}
     - target: {fileID: 5125781407322801204, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -627,6 +627,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3036838957260021017, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 3849821372272451238, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
@@ -775,5 +778,5 @@ SceneRoots:
   - {fileID: 1652477924}
   - {fileID: 2094554386246676660}
   - {fileID: 807038471}
-  - {fileID: 1417998903}
   - {fileID: 164942952}
+  - {fileID: 1428346625}
