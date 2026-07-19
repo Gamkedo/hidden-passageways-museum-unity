@@ -24,6 +24,9 @@ public class WalkControl : MonoBehaviour {
     Vector3 lastKnownSafelyOnGround = Vector3.zero;
 
 	private Vector3 forward, right;
+    private float time_last_on_ground = 0;
+    const float SEC_OFF_GROUND_FOR_LANDING_SOUND = 0.6f;
+
 
     //private float powerUp = 1.0f;
 
@@ -167,7 +170,10 @@ public class WalkControl : MonoBehaviour {
 			{
                 if (onGround == false && rb.linearVelocity.y < 0.0f)
                 {
-                    OnGrounded?.Invoke();
+                    if(Time.timeSinceLevelLoad - time_last_on_ground > SEC_OFF_GROUND_FOR_LANDING_SOUND)
+                    {
+                        OnGrounded?.Invoke();
+                    }
                     // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpLand", gameObject);
                 }
 
@@ -188,6 +194,10 @@ public class WalkControl : MonoBehaviour {
         }
         else
         {
+            if(onGround)
+            {
+                time_last_on_ground = Time.timeSinceLevelLoad;
+            }
             onGround = false;
             if (transform.position.y < suchLowYMustHaveFallenThroughFloor)
             {
