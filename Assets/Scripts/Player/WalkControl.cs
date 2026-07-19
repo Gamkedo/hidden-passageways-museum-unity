@@ -59,6 +59,10 @@ public class WalkControl : MonoBehaviour {
             }
         }
 	}
+    private void OnDestroy()
+    {
+        inputSystem.Disable();
+    }
 
 	void FixedUpdate()
 	{

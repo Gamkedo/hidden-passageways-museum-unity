@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 1441519021992802364}
   - component: {fileID: 3188559952632992641}
   - component: {fileID: 8792830946894273152}
+  - component: {fileID: 4244038224757311753}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -370,6 +371,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
   walkControl: {fileID: 8546726462060742779}
   landingSound: {fileID: 8300000, guid: 5499f3bd7bae402429d71f8e5e62eda0, type: 3}
+--- !u!114 &4244038224757311753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172491360391598653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c62d56ebe4c9134682746c55090c4d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
+  interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  camera: {fileID: 2366405596636443031}
 --- !u!1 &2794080349322281732
 GameObject:
   m_ObjectHideFlags: 0
