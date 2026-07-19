@@ -129,6 +129,7 @@ public class WalkControl : MonoBehaviour {
             // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/JumpUp", gameObject);
             onGround = false;
             rb.linearVelocity += Vector3.up * jumpForce;
+            transform.position += Vector3.up * 0.2f; // slightly cheating, helps it feel more responsive, avoids sticking back to ground
         }
         
         transform.Rotate(Vector3.up, 1.5f * turnInput.x); // reminder: don't Time.deltaTime on new mouse input, already per frame
@@ -184,8 +185,8 @@ public class WalkControl : MonoBehaviour {
                 if (Mathf.Abs(moveInput.y) < 0.1f && Mathf.Abs(moveInput.x) < 01f &&
                     jumpKey == false)
 				{
-					//Magic number (1.041f) comes from the following line:
-					//Debug.Log(Vector3.Distance(transform.position, rhInfo.point));
+					//Magic number (1.045f) comes from the following line:
+					// Debug.Log(Vector3.Distance(transform.position, rhInfo.point));
 					transform.position = new Vector3(rhInfo.point.x, rhInfo.point.y + 1.045f, rhInfo.point.z);
 					rb.linearVelocity = Vector3.zero;
 				}
