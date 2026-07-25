@@ -615,7 +615,7 @@ PrefabInstance:
       propertyPath: m_text
       value: 'Artillery Rampage
 
-        (not tested in webGL)'
+        (tested in webGL!)'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
