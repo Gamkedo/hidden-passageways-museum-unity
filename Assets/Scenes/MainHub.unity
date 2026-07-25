@@ -522,6 +522,10 @@ PrefabInstance:
       propertyPath: sceneIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
+      propertyPath: sceneOrURL
+      value: Sci-Fi City Test 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7993065437499006117, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_text
       value: 'Other other unity scene
@@ -597,17 +601,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: sceneName
-      value: Sci-Fi City Test 2
+      value: https://itch.io/queue/c/188585/devpodsgg-games?game_id=3515161
       objectReference: {fileID: 0}
     - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: sceneIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7663586034052371459, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
+      propertyPath: sceneOrURL
+      value: https://itch.io/queue/c/188585/devpodsgg-games?game_id=3515161
+      objectReference: {fileID: 0}
     - target: {fileID: 7993065437499006117, guid: 875f2af4ebf1336469db4fdea96474e9, type: 3}
       propertyPath: m_text
       value: 'Artillery Rampage
 
-        (not working yet! :)'
+        (not tested in webGL)'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

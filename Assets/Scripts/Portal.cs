@@ -6,7 +6,7 @@ public class Orb : MonoBehaviour , IInteractable
 {
     [SerializeField] private GameObject highlightObject;
 
-    [SerializeField] private string sceneName;
+    [SerializeField] private string sceneOrURL;
 
     private void Start()
     {
@@ -25,9 +25,17 @@ public class Orb : MonoBehaviour , IInteractable
 
     public void Interact()
     {
-        SceneManager.LoadScene(sceneName);
+        if(sceneOrURL.Contains("https"))
+        {
+            Debug.Log("opening URL: " + sceneOrURL);
+            OpenLink(sceneOrURL);
+        } else
+        {
+            SceneManager.LoadScene(sceneOrURL);        
+        }
     }
 
-
-    
+	public void OpenLink(string URL) {
+		Application.OpenURL(URL);
+	}  
 }

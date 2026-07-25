@@ -134,15 +134,4 @@ public class ViewControl : MonoBehaviour {
 			}
 		}
 	}
-
-	public void OpenLink(string URL) {
-		#if UNITY_WEBGL
-		openWindow(URL);
-		#else
-		Application.OpenURL(URL);
-		#endif
-	}
-
-	[DllImport("__Internal")]
-	private static extern void openWindow(string url);
 }
