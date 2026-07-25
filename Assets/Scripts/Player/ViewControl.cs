@@ -86,11 +86,6 @@ public class ViewControl : MonoBehaviour {
             float angleBefore = transform.rotation.eulerAngles.x;
             float angleMoveBy = -1.5f * turnInput.y; // reminder: don't Time.deltaTime on new mouse input, already per frame
             float angleAfter = angleBefore + angleMoveBy;
-            /*if (angleAfter < -lookAngLimit)
-            {
-                angleMoveBy = (-lookAngLimit) - angleBefore;
-            }
-            */
             if (angleAfter > 180.0f)
             {
                 angleAfter = angleAfter - 360.0f;
@@ -118,13 +113,6 @@ public class ViewControl : MonoBehaviour {
 		if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out rhInfo, raycastMaxDistance,
                             ignoreMask)) {
             MouseTipOnLook mtol = rhInfo.collider.gameObject.GetComponent<MouseTipOnLook>();
-            // Debug.Log(rhInfo.collider.gameObject.name);
-            /*LanternScript lantern = rhInfo.collider.gameObject.GetComponent<LanternScript>();
-
-            if (lantern)
-            {
-                lantern.LookedAt();
-            }*/
 
             if (mtol) {
                 if(actionKey || jumpKey) {
