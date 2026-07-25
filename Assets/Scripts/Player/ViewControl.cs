@@ -77,11 +77,7 @@ public class ViewControl : MonoBehaviour {
         }
 
         bool ignoreDuringInit = false;
-        if (SceneWarp.fromScene != null && SceneWarp.fromScene.Length > 0)
-        {
-            ignoreDuringInit = false;
-        }
-        else if (Time.timeSinceLevelLoad - timeWhenIntroEnded < 0.25f)
+        if (Time.timeSinceLevelLoad - timeWhenIntroEnded < 0.25f)
         {
             ignoreDuringInit = true;
         }
@@ -145,14 +141,6 @@ public class ViewControl : MonoBehaviour {
                     {
                         // FMODUnity.RuntimeManager.PlayOneShotAttached("event:/MainHub/OtherSwitch", gameObject);
                         mtol.SendMessage("triggerAction", SendMessageOptions.DontRequireReceiver);
-                    }
-                } else {
-                    TriggerComponentEnable activateComponent = mtol.GetComponent<TriggerComponentEnable>();
-                    if(activateComponent == null || activateComponent.canBeUsed())
-                    {
-                        linkClueShadow.text = linkClue.text = mtol.displayText;
-                    } else {
-                        linkClueShadow.text = linkClue.text = "(already used)";
                     }
                 }
 			}

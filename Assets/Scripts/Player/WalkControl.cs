@@ -43,21 +43,6 @@ public class WalkControl : MonoBehaviour {
         instance = this;
         rb = GetComponent<Rigidbody>();
 		Cursor.lockState = CursorLockMode.Locked;
-
-        if(SceneWarp.fromScene != null && SceneWarp.fromScene.Length > 0) {
-            // Debug.Log("FROM SCENE: " + SceneWarp.fromScene);
-            GameObject[] warpGOs = GameObject.FindGameObjectsWithTag("Teleporter");
-            for (int i = 0; i < warpGOs.Length;i++) {
-                SceneWarp swScript = warpGOs[i].GetComponent<SceneWarp>();
-                if(swScript.sceneName == SceneWarp.fromScene) {
-                    transform.position = swScript.returnLocation.position;
-                    Vector3 focusFixedAtEyeHeight = swScript.transform.position;
-                    focusFixedAtEyeHeight.y = transform.position.y;
-                    transform.LookAt(focusFixedAtEyeHeight);
-                    break;
-                }
-            }
-        }
 	}
     private void OnDestroy()
     {
