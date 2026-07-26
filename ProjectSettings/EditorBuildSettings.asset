@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sci-Fi City Test 2.unity
     guid: 342f8dc28a4274c7d916d3f27c5dc8d3
+  - enabled: 1
+    path: Assets/Scenes/Parkour.unity
+    guid: 8d17dc7160109b84b807ba1246a5c7ec
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
