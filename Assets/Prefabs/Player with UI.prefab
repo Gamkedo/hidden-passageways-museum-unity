@@ -385,6 +385,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   camera: {fileID: 2366405596636443031}
+  interactionDistance: 3
 --- !u!1 &2794080349322281732
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,7 +989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 17db0509cc6b74df481b7e383188f607, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 17db0509cc6b74df481b7e383188f607, type: 3}
       propertyPath: m_Name
