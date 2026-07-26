@@ -43,7 +43,7 @@ public class ViewControl : MonoBehaviour {
 			return;
 		}
 
-        if (paperView.enabled)
+        /*if (paperView.enabled)
         {
             if (tabKey)
             {
@@ -69,7 +69,7 @@ public class ViewControl : MonoBehaviour {
                 }
             }
             return;
-        }
+        }*/
 
         if (WalkControl.instance.areFeetLocked)
         {
