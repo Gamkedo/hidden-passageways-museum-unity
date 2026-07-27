@@ -12,11 +12,11 @@ ScriptedImporter:
   overridePalette: 0
   customPalette: []
   settings:
-    rid: 1000
+    rid: 3120764271487352947
   references:
     version: 2
     RefIds:
-    - rid: 1000
+    - rid: 3120764271487352947
       type: {class: VoxFileToUnityBakeTextureSetting, ns: Miventech.NativeVoxReader.Tools.VoxFileBakeTexture, asm: Miventech.NativeVoxReader}
       data:
         maxAtlasSize: 4096
