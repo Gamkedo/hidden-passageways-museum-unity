@@ -24,7 +24,7 @@ public class CollectableManger : MonoBehaviour
 
             if(keyCount == 3)
             {
-                hiddenPortal.gameObject.SetActive(true);
+                hiddenPortal.gameObject.SetActive(false);
             }
         }
     }
