@@ -1659,6 +1659,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 16246084640539595, guid: f845a6fe3fed54114b7107e87885874a, type: 3}
+      propertyPath: mouseSensitivity
+      value: 0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 4244038224757311753, guid: f845a6fe3fed54114b7107e87885874a, type: 3}
       propertyPath: interactionDistance
       value: 2
