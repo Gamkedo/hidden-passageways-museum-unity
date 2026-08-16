@@ -1,22 +1,40 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerAudio : MonoBehaviour
 {
-    [SerializeField] private WalkControl walkControl;
     [SerializeField] private AudioClip landingSound;
+    [SerializeField] private float airTimeRequiredForLandSound = .4f;
+    private bool isGrounded;
+    private bool wasGroundedLastFrame;
+    private float inAirTimeCurrent;
+     private CharacterController characterController;
 
-    private void OnEnable()
+
+    private void Start()
     {
-        walkControl.OnGrounded += WalkControl_OnGrounded;
+        characterController = GetComponent<CharacterController>();
     }
 
-    private void OnDisable()
+    private void Update()
     {
-        walkControl.OnGrounded-= WalkControl_OnGrounded;
-    }
+        isGrounded = characterController.isGrounded;
+        if ((isGrounded && !wasGroundedLastFrame) && inAirTimeCurrent >= airTimeRequiredForLandSound)
+        {
+            AudioSource.PlayClipAtPoint(landingSound, transform.position);
 
-    private void WalkControl_OnGrounded()
-    {
-        AudioSource.PlayClipAtPoint(landingSound,transform.position);
+        }
+
+        if (isGrounded)
+        {
+            inAirTimeCurrent = 0;
+
+        }
+        else
+        {
+            inAirTimeCurrent += Time.deltaTime;
+        }
+
+        wasGroundedLastFrame = isGrounded;
     }
 }
