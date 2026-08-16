@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 7635197092485104104}
   - component: {fileID: 3929970096597504362}
   - component: {fileID: 1055601562489125226}
+  - component: {fileID: 4715585322434410406}
   m_Layer: 0
   m_Name: FirstPersonPlayer
   m_TagString: Untagged
@@ -263,6 +264,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
   landingSound: {fileID: 8300000, guid: 5499f3bd7bae402429d71f8e5e62eda0, type: 3}
   airTimeRequiredForLandSound: 0.4
+--- !u!114 &4715585322434410406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4005160373617238780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96c71ead7e77ddc4993176c3008af045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RigidBodyPush
+  strength: 1
 --- !u!1 &7193530021211347561
 GameObject:
   m_ObjectHideFlags: 0
