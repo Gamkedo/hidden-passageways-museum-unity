@@ -14,5 +14,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Parkour.unity
     guid: 8d17dc7160109b84b807ba1246a5c7ec
+  - enabled: 1
+    path: Assets/Scenes/Liminal.unity
+    guid: a8c17b65f3041cf4ba4e6cab219e0661
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

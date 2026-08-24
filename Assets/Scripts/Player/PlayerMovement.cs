@@ -15,6 +15,27 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTimeCounter = 0.15f;
     private float jumpBufferCounter = 0;
     private Vector3 velocity;
+    InputSystem_Actions inputActions;
+
+    private void Start()
+    {
+        inputActions = new();
+        inputActions.Player.Enable();
+        inputActions.Player.Jump.performed += Jump_performed;
+    }
+
+    private void OnDestroy()
+    {
+        inputActions.Player.Disable();
+    }
+
+    private void Jump_performed(InputAction.CallbackContext obj)
+    {
+        if(obj.performed)
+        {
+            jumpBufferCounter = jumpBufferDuration;
+        }
+    }
 
     private void Update()
     {
@@ -34,22 +55,8 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpBufferCounter -= Time.deltaTime;
         }
-
         Vector2 moveInput = Vector2.zero;
-
-        if (Keyboard.current.wKey.isPressed) moveInput.y += 1;
-        if (Keyboard.current.sKey.isPressed) moveInput.y -= 1;
-        if (Keyboard.current.aKey.isPressed) moveInput.x -= 1;
-        if (Keyboard.current.dKey.isPressed) moveInput.x += 1;
-
-
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
-        {
-            jumpBufferCounter = jumpBufferDuration;
-
-        }
-
-
+        moveInput = inputActions.Player.Move.ReadValue<Vector2>();
 
 
         if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
@@ -59,9 +66,9 @@ public class PlayerMovement : MonoBehaviour
             jumpBufferCounter = 0;
         }
 
-        moveInput.Normalize();
+        
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
-        float currentSpeed = Keyboard.current.leftShiftKey.isPressed ? sprintSpeed : walkSpeed;
+        float currentSpeed = inputActions.Player.Sprint.inProgress ? sprintSpeed : walkSpeed;
 
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
 
