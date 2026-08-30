@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Orb
   highlightObject: {fileID: 3036838957260021017}
-  sceneName: 
+  sceneOrURL: MainHub
 --- !u!1 &3036838957260021017
 GameObject:
   m_ObjectHideFlags: 0
