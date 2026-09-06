@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpHeight = 1;
     [SerializeField] private float coyoteTimeDuration = 0.15f;
     [SerializeField] private float jumpBufferDuration = 0.15f;
+    [SerializeField] private bool allowSprinting = true;
 
     private float coyoteTimeCounter = 0.15f;
     private float jumpBufferCounter = 0;
@@ -68,7 +69,12 @@ public class PlayerMovement : MonoBehaviour
 
         
         Vector3 moveDirection = transform.right * moveInput.x + transform.forward * moveInput.y;
-        float currentSpeed = inputActions.Player.Sprint.inProgress ? sprintSpeed : walkSpeed;
+        float currentSpeed= walkSpeed;
+        if (allowSprinting)
+        {
+            currentSpeed = inputActions.Player.Sprint.inProgress ? sprintSpeed : walkSpeed;
+        }
+
 
         characterController.Move(moveDirection * currentSpeed * Time.deltaTime);
 
