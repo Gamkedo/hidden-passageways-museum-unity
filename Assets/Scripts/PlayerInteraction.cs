@@ -7,6 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] private InputActionReference interact;
     [SerializeField] private Transform camera;
     [SerializeField] private float interactionDistance = 3;
+    [SerializeField] private LayerMask interactableLayer;
 
     private void OnEnable()
     {
@@ -15,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.Raycast(camera.transform.position, camera.forward, out RaycastHit hitInfo, interactionDistance))
+        if (Physics.Raycast(camera.transform.position, camera.forward, out RaycastHit hitInfo, interactionDistance, interactableLayer))
         {
             if (hitInfo.collider.TryGetComponent<IInteractable>(out component))
             {
@@ -39,7 +40,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Action_started(InputAction.CallbackContext obj)
     {
-        if(Physics.Raycast(camera.transform.position,camera.forward,out RaycastHit hitInfo, interactionDistance))
+        if(Physics.Raycast(camera.transform.position,camera.forward,out RaycastHit hitInfo, interactionDistance, interactableLayer))
         {
             if(hitInfo.collider.TryGetComponent<IInteractable>(out IInteractable component))
             {
