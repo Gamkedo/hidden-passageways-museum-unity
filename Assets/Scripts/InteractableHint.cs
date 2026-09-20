@@ -3,6 +3,7 @@ using UnityEngine;
 public class InteractableHint : MonoBehaviour
 {
     [SerializeField] private GameObject hintVisual;
+    public static bool locked = false; 
 
     private void Start()
     {
@@ -11,6 +12,8 @@ public class InteractableHint : MonoBehaviour
 
     public void OnZoneEnter(ColliderType type)
     {
+        if (locked)
+            return;
         if (type == ColliderType.INNER)
         {
             hintVisual.SetActive(false);
@@ -20,8 +23,20 @@ public class InteractableHint : MonoBehaviour
         }
     }
 
+    public void ShowHintVisual()
+    {
+        hintVisual.SetActive(true);
+    }
+
+    public void HideHintVisual()
+    {
+        hintVisual.SetActive(false);
+    }
+
     public void OnZoneExit(ColliderType type)
     {
+        if (locked)
+            return;
         if (type == ColliderType.INNER)
         {
             hintVisual.SetActive(true);
