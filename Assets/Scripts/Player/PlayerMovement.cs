@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float coyoteTimeDuration = 0.15f;
     [SerializeField] private float jumpBufferDuration = 0.15f;
     [SerializeField] private bool allowSprinting = true;
+    [SerializeField] private bool allowJumping = true;
 
     private float coyoteTimeCounter = 0.15f;
     private float jumpBufferCounter = 0;
@@ -60,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         moveInput = inputActions.Player.Move.ReadValue<Vector2>();
 
 
-        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0)
+        if (jumpBufferCounter > 0 && coyoteTimeCounter > 0 && allowJumping)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
             coyoteTimeCounter = 0;
