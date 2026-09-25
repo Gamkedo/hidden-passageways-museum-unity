@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RedPath.unity
     guid: ba645cf1c62d7474c80272549b319006
+  - enabled: 1
+    path: Assets/Scenes/Test16.unity
+    guid: d466a3210c74649c78d901f2a7abe0ad
+  - enabled: 1
+    path: Assets/Scenes/Test24.unity
+    guid: 5c5b18a4034944711bdeb2f1990d8bd8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
