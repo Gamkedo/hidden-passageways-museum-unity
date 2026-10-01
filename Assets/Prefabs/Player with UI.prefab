@@ -257,6 +257,7 @@ GameObject:
   - component: {fileID: 3188559952632992641}
   - component: {fileID: 8792830946894273152}
   - component: {fileID: 4244038224757311753}
+  - component: {fileID: 3875661574971605878}
   m_Layer: 0
   m_Name: Player (old/inital placeholder)
   m_TagString: Untagged
@@ -369,8 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59cd3e7a0c5a32241bd76746720e1a69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAudio
-  walkControl: {fileID: 8546726462060742779}
   landingSound: {fileID: 8300000, guid: 5499f3bd7bae402429d71f8e5e62eda0, type: 3}
+  airTimeRequiredForLandSound: 0.4
 --- !u!114 &4244038224757311753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +387,34 @@ MonoBehaviour:
   interact: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   camera: {fileID: 2366405596636443031}
   interactionDistance: 3
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!143 &3875661574971605878
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2172491360391598653}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2794080349322281732
 GameObject:
   m_ObjectHideFlags: 0
@@ -792,7 +821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2366405596636443031
 Transform:
   m_ObjectHideFlags: 0
@@ -866,7 +895,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8755720260920444859}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &5408605964533935558
 MonoBehaviour:
   m_ObjectHideFlags: 0
