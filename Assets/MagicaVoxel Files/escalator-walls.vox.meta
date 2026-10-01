@@ -8,17 +8,16 @@ ScriptedImporter:
   assetBundleName: 
   assetBundleVariant: 
   script: {fileID: 11500000, guid: 775e83507a2fd43d9a4d981efc50a847, type: 3}
-  selectedRenderType: VoxBakedTextureRenderer
+  selectedRenderType: VoxPaletteStyleRenderer
   overridePalette: 0
   customPalette: []
   settings:
-    rid: 1000
+    rid: 4656483463880769546
   references:
     version: 2
     RefIds:
-    - rid: 1000
-      type: {class: VoxFileToUnityBakeTextureSetting, ns: Miventech.NativeVoxReader.Tools.VoxFileBakeTexture, asm: Miventech.NativeVoxReader}
+    - rid: 4656483463880769546
+      type: {class: VoxFileToUnityPaletteStyleSetting, ns: Miventech.NativeVoxReader.Tools.VoxFilePaletteStyle, asm: Miventech.NativeVoxReader}
       data:
-        maxAtlasSize: 4096
-        maxQuadSize: 48
         Scale: 0.1
+        CustomTextureAtlas: {instanceID: 0}
