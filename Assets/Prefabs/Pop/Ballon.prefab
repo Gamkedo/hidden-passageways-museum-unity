@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2144843935696204131}
   - component: {fileID: 5871364333301533538}
   - component: {fileID: 7209807732136189349}
-  - component: {fileID: 8039359339270865202}
   - component: {fileID: 1289015840343137343}
   - component: {fileID: -3880559208569513663}
+  - component: {fileID: 3861512233499961303}
   m_Layer: 6
   m_Name: Ballon
   m_TagString: Untagged
@@ -94,27 +94,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8039359339270865202
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 642203308226939647}
-  m_Material: {fileID: 13400000, guid: d4cb8905a3120414f9057fbad3f8cb0c, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1289015840343137343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ballon
   speed: 3
+  coinPrefab: {fileID: 8026032431388120922, guid: 9ec9bc2033b19a94eb81f10a796ee14f, type: 3}
 --- !u!54 &-3880559208569513663
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -155,6 +135,27 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!135 &3861512233499961303
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642203308226939647}
+  m_Material: {fileID: 13400000, guid: d4cb8905a3120414f9057fbad3f8cb0c, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3037260084866481043
 GameObject:
   m_ObjectHideFlags: 0
