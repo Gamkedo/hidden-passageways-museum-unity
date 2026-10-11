@@ -1,9 +1,11 @@
+using Unity.Jobs;
 using UnityEngine;
 
 public class BallonSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject ballonPrefab;
     [SerializeField] private GameObject goldenBallonPrefab;
+    [SerializeField] private GameObject blackBallonPrefab;
     private int spawnRate = 2;
 
 
@@ -16,7 +18,11 @@ public class BallonSpawner : MonoBehaviour
     {
         int num = Random.Range(1, 101);
 
-        if (num < 20)
+        if (num <= 10)
+        {
+            Instantiate(blackBallonPrefab, new Vector3(Random.Range(-3, 3), Random.Range(-5, -3), Random.Range(4, 5)), Quaternion.identity, transform);
+
+        } else if(num>10 && num<=30)
         {
             Instantiate(goldenBallonPrefab, new Vector3(Random.Range(-3, 3), Random.Range(-5, -3), Random.Range(4, 5)), Quaternion.identity, transform);
 
