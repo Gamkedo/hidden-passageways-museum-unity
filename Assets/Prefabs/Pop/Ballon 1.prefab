@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Ballon
   type: 1
-  speed: 3
+  speed: 2
   coinPrefab: {fileID: 8026032431388120922, guid: 9ec9bc2033b19a94eb81f10a796ee14f, type: 3}
 --- !u!54 &-3880559208569513663
 Rigidbody:
