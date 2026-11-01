@@ -7,6 +7,7 @@ public class GoalManager : MonoBehaviour
     [SerializeField] private TextManager textManager;
     [SerializeField] private int ballonCollectorCost = 10;
     [SerializeField] private GameObject goalUI;
+    private bool ballonCollectorPurchased = false;
 
 
     private void OnEnable()
@@ -21,8 +22,9 @@ public class GoalManager : MonoBehaviour
 
     private void TextManager_OnCoinCollected(int count)
     {
-        if(count>=ballonCollectorCost)
+        if(count>=ballonCollectorCost && !ballonCollectorPurchased)
         {
+            ballonCollectorPurchased = true;
         textManager.Purchase(ballonCollectorCost);
 
         ballonCollector.SetActive(true);
