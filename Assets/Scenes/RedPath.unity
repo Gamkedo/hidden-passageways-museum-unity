@@ -1489,6 +1489,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: parkour
       objectReference: {fileID: 0}
+    - target: {fileID: 7770321131908920066, guid: 5ea6b8a794bf43740b06ded6ba893476, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770321131908920066, guid: 5ea6b8a794bf43740b06ded6ba893476, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770321131908920066, guid: 5ea6b8a794bf43740b06ded6ba893476, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
